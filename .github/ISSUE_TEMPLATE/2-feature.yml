@@ -1,0 +1,38 @@
+name: 기능·작업
+description: 새 기능이나 해야 할 작업을 등록합니다.
+title: "[기능] "
+labels: ["feature"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: 목표
+      description: 이 작업이 끝나면 누가 무엇을 할 수 있게 되는지 적습니다.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: 왜 필요한가
+      description: 배경, 요청한 사람·고객, 관련 문서를 적습니다.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: 할 일
+      description: 할 일을 체크박스로 나눠 적습니다.
+      value: |
+        - [ ]
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: 하지 않는 것
+      description: 이번 범위에서 일부러 빼는 것을 적습니다.
+  - type: textarea
+    id: done
+    attributes:
+      label: 끝 조건
+      description: 무엇을 확인하면 끝났다고 볼지 적습니다. 예) 어떤 시험이 통과한다, 어떤 화면에서 어떤 값이 보인다.
+    validations:
+      required: true
