@@ -14,16 +14,14 @@ body:
     id: why
     attributes:
       label: 왜 필요한가
-      description: 배경, 요청한 사람·고객, 관련 문서를 적습니다.
+      description: 배경과 관련 근거를 적습니다. 공개 저장소에는 고객 식별 정보나 비공개 자료를 붙이지 않습니다.
     validations:
       required: true
   - type: textarea
     id: scope
     attributes:
       label: 할 일
-      description: 할 일을 체크박스로 나눠 적습니다.
-      value: |
-        - [ ]
+      description: 범위를 나눠야 할 때만, 완료 여부를 확인할 수 있는 작업을 적습니다.
   - type: textarea
     id: out_of_scope
     attributes:
