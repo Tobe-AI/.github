@@ -1,5 +1,7 @@
 require "yaml"
 
+Encoding.default_external = Encoding::UTF_8 # 템플릿은 UTF-8이므로 C 로캘에서도 같은 결과를 냅니다.
+
 root = File.expand_path("..", __dir__)
 issue_dir = File.join(root, ".github", "ISSUE_TEMPLATE")
 forms = {
