@@ -20,7 +20,7 @@ forms.each do |name, (prefix, label, required_fields)|
   end
 
   fields = form.fetch("body").reject { |field| field.fetch("type") == "markdown" }
-  ids = fields.map { |field| field.fetch("id") }
+  ids = fields.map { |field| field.fetch("id") { abort "#{name}: field without id" } }
   abort "#{name}: duplicate field id" unless ids.uniq == ids
   actual = fields.select { |field| field.dig("validations", "required") == true }
                  .map { |field| field.fetch("id") }
