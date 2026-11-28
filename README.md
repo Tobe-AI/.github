@@ -1,18 +1,26 @@
 # Tobe-AI 공용 GitHub 설정
 
-이 저장소의 템플릿은 Tobe-AI 조직의 **모든 저장소에 기본값으로 적용**됩니다.
+이 저장소는 Tobe-AI 조직의 기본 이슈 양식, PR 템플릿, 기여 안내를 관리합니다. 실제 적용 여부는 대상 저장소의 기본 브랜치에 같은 종류의 자체 파일이 있는지에 따라 달라집니다.
 
 | 파일 | 하는 일 |
 | --- | --- |
-| `.github/ISSUE_TEMPLATE/1-proposal.yml` | 제안 이슈. 제목이 `[제안] `으로 시작 |
-| `.github/ISSUE_TEMPLATE/2-feature.yml` | 기능·작업 이슈. 제목이 `[기능] `으로 시작 |
-| `.github/ISSUE_TEMPLATE/3-bug.yml` | 버그 이슈. 제목이 `[버그] `으로 시작 |
-| `.github/ISSUE_TEMPLATE/config.yml` | 템플릿 없이 빈 이슈를 만들 수 있는지 |
-| `.github/pull_request_template.md` | PR 본문 기본 내용과 PR 제목 규칙 |
+| [`1-proposal.yml`](.github/ISSUE_TEMPLATE/1-proposal.yml) | 결정이 필요한 설계·구조 제안. 제목 접두어 `[제안]` |
+| [`2-feature.yml`](.github/ISSUE_TEMPLATE/2-feature.yml) | 기능·작업과 완료 기준. 제목 접두어 `[기능]` |
+| [`3-bug.yml`](.github/ISSUE_TEMPLATE/3-bug.yml) | 기대와 다른 동작, 재현 단계, 영향. 제목 접두어 `[버그]` |
+| [`config.yml`](.github/ISSUE_TEMPLATE/config.yml) | 템플릿 없이 빈 이슈를 만들 수 있는지 설정 |
+| [`pull_request_template.md`](.github/pull_request_template.md) | PR 제목·본문 작성 기본값 |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | 이슈·PR 작성과 공개 범위 안내 |
 
-## 알아 둘 것
+## 어느 양식이 적용되나요?
 
-- 이 저장소는 GitHub 규칙상 **공개 저장소**여야 합니다. 비밀이나 내부 정보를 여기에 넣지 마세요.
-- 어떤 저장소에 자기 `.github/ISSUE_TEMPLATE/` 폴더가 있으면, 그 저장소는 이 공용 이슈 템플릿을 **전혀 쓰지 않고** 자기 것만 씁니다. PR 템플릿도 같습니다.
-- 템플릿에 나오는 라벨(`proposal`, `feature`, `bug`)이 각 저장소에 없으면 라벨만 붙지 않고, 이슈는 정상으로 만들어집니다.
-- 저장소별로 다르게 쓰고 싶으면 그 저장소에 `.github/` 템플릿을 따로 두면 됩니다.
+- 대상 저장소의 기본 브랜치가 유효한 자체 이슈 양식 또는 `.github/ISSUE_TEMPLATE/config.yml`을 갖고 있으면, 공용 이슈 양식 세트 전체를 사용하지 않습니다. 로컬 양식이 필요하면 유지할 양식과 설정을 함께 검토하세요.
+- 대상 저장소에 자체 PR 템플릿이 있으면 그것이 우선합니다. 이슈 양식과 PR 템플릿의 적용 여부는 별개입니다.
+- 자체 `CONTRIBUTING.md`가 없는 저장소는 공개 여부와 관계없이 이슈·PR 작성 화면에 이 저장소의 [`CONTRIBUTING.md`](CONTRIBUTING.md) 링크를 보여 줍니다.
+- `proposal`, `feature`, `bug` 라벨은 이 `.github` 저장소와 대상 저장소 양쪽에 있어야 웹 양식에서 자동으로 붙습니다. 공용 양식은 라벨을 생성하지 않습니다. CLI/API로 작성할 때는 같은 정보를 본문에 명시하고 대상 라벨을 확인합니다.
+- 이 저장소는 공개입니다. 내부 업무 절차, 고객 자료, 비공개 설정이나 연락처는 여기에 저장하지 않습니다. 양식이 채워졌다는 사실만으로 리뷰나 병합이 강제되지는 않습니다. 그런 보호는 GitHub Settings에서 관리합니다.
+
+근거: [GitHub 기본 파일과 우선순위](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file), [이슈·PR 템플릿](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/about-issue-and-pull-request-templates).
+
+## 양식 변경 확인
+
+`ruby scripts/check-templates.rb`로 YAML 파싱, 공용 양식의 필수 항목과 라벨·제목, 빈 이슈 설정, PR 섹션 순서를 확인합니다. 이 검사는 조직 설정이나 GitHub UI의 상속 동작을 검증하지 않습니다. 변경이 병합된 뒤 자체 양식이 없는 저장소의 이슈 선택 화면과 PR 작성 화면에서 적용을 확인하세요.
